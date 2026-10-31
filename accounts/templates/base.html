@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EduSphere - Online Learning</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        nav { background: #333; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;}
+        nav a { color: white; text-decoration: none; margin-left: 15px; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        .course-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
+        .btn { background: #28a745; color: white; padding: 10px 15px; text-decoration: none; border: none; border-radius: 5px; cursor: pointer; }
+        .btn-blue { background: #007bff; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h2><a href="/">EduSphere</a></h2>
+        <div>
+            <a href="/courses/">All Courses</a>
+            {% if user.is_authenticated %}
+                <span>Hi, {{ user.username }}</span>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+            <a href="/admin/">Admin</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
